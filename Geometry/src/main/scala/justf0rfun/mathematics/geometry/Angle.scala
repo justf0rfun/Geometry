@@ -2,11 +2,11 @@ package justf0rfun.mathematics.geometry
 
 import scala.math._
 
-class Angle(val radian: Double) {
+class Angle(val radian: Double) extends AnyVal {
 
 	def degree = toDegrees(radian)
 
-	override def toString = "%f°".format(degree)
+	override def toString = f"$degree%f°"
 
 	def inverse = this + Angle.degree180
 
