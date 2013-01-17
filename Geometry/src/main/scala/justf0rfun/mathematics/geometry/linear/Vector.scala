@@ -14,8 +14,6 @@ class Vector(val width: Double, val height: Double) {
 
 //	def this(pointA: Point, pointB: Point) = this(max(pointA.x, pointB.x) - min(pointA.x, pointB.x), max(pointA.y, pointB.y) - min(pointA.y, pointB.y))
 	
-	def this(angle: Angle, distance: Double) = this(distance * cos(angle.radian), distance * sin(angle.radian))
-	
 	def angle = new Angle(atan2(height, width))
 	
 //	def angle(vector: Vector) = new Angle(arcos(this * vector))
@@ -38,7 +36,7 @@ class Vector(val width: Double, val height: Double) {
 	
 	def point(referencePoint: Point) = new Point(referencePoint.x + width, referencePoint.y + height)
 	
-	def unitVector = if(distance == 1) this else new Vector(angle, 1)
+	def unitVector = if(distance == 1) this else Vector.createPolarVector(angle, 1)
 	
 	def distance = sqrt(pow(width, 2) + pow(height, 2))
 	
@@ -49,5 +47,7 @@ class Vector(val width: Double, val height: Double) {
 object Vector {
 	
 	lazy val zeroVector = new Vector(0, 0)
+	
+	def createPolarVector(angle: Angle, distance: Double) = new Vector(distance * cos(angle.radian), distance * sin(angle.radian))
 	
 }
